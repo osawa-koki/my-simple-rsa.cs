@@ -8,10 +8,6 @@
       {
         throw new ArgumentException("引数は正の整数である必要があります。");
       }
-      if (a % 1 != 0 || b % 1 != 0)
-      {
-        throw new ArgumentException("引数は正の整数である必要があります。");
-      }
       if (a == 0)
       {
         return b;
