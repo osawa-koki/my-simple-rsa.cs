@@ -34,9 +34,9 @@ var result = Parser.Default.ParseArguments<Options>(args)
     var encrypted = Util.Encrypt((a, b), message);
     var decrypted = Util.Decrypt((c, d), encrypted);
 
-    Console.WriteLine($"元のメッセージ: {message}");
-    Console.WriteLine($"暗号化されたメッセージ: {encrypted}");
-    Console.WriteLine($"復号化されたメッセージ: {decrypted}");
+    Console.WriteLine($"元のメッセージ: {message} ({message.Length})");
+    Console.WriteLine($"暗号化されたメッセージ: {encrypted} ({encrypted.Length})");
+    Console.WriteLine($"復号化されたメッセージ: {decrypted} ({decrypted.Length})");
   })
   .WithNotParsed(errors =>
   {
