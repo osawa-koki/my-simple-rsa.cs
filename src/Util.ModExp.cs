@@ -1,8 +1,10 @@
-﻿namespace my_simple_rsa
+﻿using System.Numerics;
+
+namespace my_simple_rsa
 {
   public static partial class Util
   {
-    public static int ModExp(int x, int y, int m)
+    public static BigInteger ModExp(BigInteger x, BigInteger y, BigInteger m)
     {
       if (y == 0)
       {
