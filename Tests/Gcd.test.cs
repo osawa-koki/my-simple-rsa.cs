@@ -1,6 +1,6 @@
 namespace my_simple_rsa
 {
-  public static class Test
+  public static partial class Test
   {
     [Theory]
     [InlineData(2, 3, 1)]
