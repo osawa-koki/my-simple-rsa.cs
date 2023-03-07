@@ -2,7 +2,7 @@
 {
   public static partial class Util
   {
-    public static (int a, int b)? GetPrivateKey(int p, int q, (int a, int b) privateKey)
+    public static (int a, int b) GetPrivateKey(int p, int q, (int a, int b) privateKey)
     {
       var (n, e) = privateKey;
       var phi = Lcm(p - 1, q - 1);
@@ -10,7 +10,7 @@
 
       if (p == q)
       {
-        return null;
+        throw new ArgumentException();
       }
 
       // dが正の数になるようにする

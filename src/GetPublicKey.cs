@@ -2,7 +2,7 @@
 {
   public static partial class Util
   {
-    public static (int, int)? GetPublicKey(int p, int q)
+    public static (int, int) GetPublicKey(int p, int q)
     {
       int n = p * q;
       int phi = (p - 1) * (q - 1);
@@ -10,7 +10,7 @@
 
       if (p == q)
       {
-        return null;
+        throw new ArgumentException();
       }
 
       while (Gcd(e, phi) != 1)
