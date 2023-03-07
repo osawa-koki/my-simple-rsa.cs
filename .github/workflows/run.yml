@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  args: "--prime 11 --prime 53 --message 'Hello World!!!'"
+  args: "--prime1 11 --prime2 53 --message 'Hello World!!!'"
 
 jobs:
   dotnet-test:
