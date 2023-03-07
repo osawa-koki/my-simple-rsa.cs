@@ -2,7 +2,7 @@
 {
   public static partial class Util
   {
-    private static int ModExp(int x, int y, int m)
+    public static int ModExp(int x, int y, int m)
     {
       if (y == 0)
       {
