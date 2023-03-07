@@ -31,12 +31,12 @@ var result = Parser.Default.ParseArguments<Options>(args)
 
     Console.WriteLine($"秘密鍵: ({c}, {d})");
 
-    var encrypted = Util.Encrypt((a, b), message);
-    var decrypted = Util.Decrypt((c, d), encrypted);
-
     Console.WriteLine($"元のメッセージ: {message} ({message.Length})");
+    var encrypted = Util.Encrypt((a, b), message);
     Console.WriteLine($"暗号化されたメッセージ: {encrypted} ({encrypted.Length})");
+    var decrypted = Util.Decrypt((c, d), encrypted);
     Console.WriteLine($"復号化されたメッセージ: {decrypted} ({decrypted.Length})");
+
   })
   .WithNotParsed(errors =>
   {
