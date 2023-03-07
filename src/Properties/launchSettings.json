@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Program": {
+      "commandName": "Project",
+      "commandLineArgs": "--prime1 61 --prime2 53 --message \"hello world\""
+    }
+  }
+}

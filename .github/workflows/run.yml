@@ -1,0 +1,38 @@
+name: Test and Run .NET project
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  args: "--prime 11 --prime 53 --message 'Hello World!!!'"
+
+jobs:
+  dotnet-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET project
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test ./Tests
+  dotnet-run:
+    runs-on: ubuntu-latest
+    needs: dotnet-test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET project
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet publish -c Release -o ./bin
+      - name: Run
+        run: dotnet ./bin/Program.dll ${{ env.args }}
