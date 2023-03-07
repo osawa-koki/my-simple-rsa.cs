@@ -1,23 +1,24 @@
-﻿namespace my_simple_rsa
+﻿using System.Text;
+
+namespace my_simple_rsa
 {
   public static partial class Util
   {
-    public static string Encrypt((int, int) publicKey, string message)
+    public static string Encrypt((int n, int e) publicKey, string message)
     {
-      (int n, int e) = publicKey;
-      var _message = Uri.EscapeDataString(message);
-      var blockSize = (int)Math.Floor(Math.Log10(n) / Math.Log10(2)) - 1;
-      var blocks = Enumerable.Range(0, (_message.Length + blockSize - 1) / blockSize)
-          .Select(i => _message.Substring(i * blockSize, Math.Min(blockSize, _message.Length - i * blockSize)))
-          .Where(s => !string.IsNullOrEmpty(s))
-          .Select(s => s.Aggregate(0, (acc, c) => acc * 256 + c))
-          .Select(num => num.ToString().PadLeft(blockSize, '0'))
+      var (n, e) = publicKey;
+      var blockSize = (int)Math.Floor(Math.Log10(n) / Math.Log10(2)) / 4 * 4;
+      var bytes = Encoding.UTF8.GetBytes(message);
+      var blocks = Enumerable.Range(0, bytes.Length / blockSize + 1)
+          .Select(i => bytes.Skip(i * blockSize).Take(Math.Min(blockSize, bytes.Length - i * blockSize)))
+          .Where(s => s.Any())
+          .Select(block => BitConverter.ToInt32(block.Concat(new byte[4 - (block.Count() % 4)]).ToArray(), 0))
+          .Select(num => num.ToString().PadLeft(blockSize / 4, '0'))
           .ToList();
-
       var encryptedBlocks = blocks.Select(block =>
       {
         var num = int.Parse(block);
-        return ModExp(num, e, n).ToString().PadLeft(blockSize + 1, '0');
+        return ModExp(num, e, n).ToString().PadLeft(blockSize / 4 + 1, '0');
       }).ToList();
       return string.Join("", encryptedBlocks);
     }
