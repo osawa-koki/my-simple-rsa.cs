@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Web;
 
 namespace my_simple_rsa
 {
@@ -6,7 +7,7 @@ namespace my_simple_rsa
   {
     public static string Encrypt((BigInteger n, BigInteger e) publicKey, string message)
     {
-      var _message = System.Web.HttpUtility.UrlEncode(message);
+      var _message = HttpUtility.UrlEncode(message);
       var (n, e) = publicKey;
       var blockSize = (int)(BigInteger.Log10(n) / BigInteger.Log10(2)) - 1;
       var blocks = _message.ToCharArray().Aggregate(new List<string>(), (acc, _char) =>
