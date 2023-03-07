@@ -1,4 +1,6 @@
-﻿namespace my_simple_rsa
+﻿using System.Web;
+
+namespace my_simple_rsa
 {
   public static partial class Util
   {
@@ -16,7 +18,7 @@
       });
       var decryptedString = new string(decryptedChars.ToArray());
       var decodedString = Uri.UnescapeDataString(decryptedString);
-      return decodedString;
+      return HttpUtility.UrlDecode(decodedString);
     }
   }
 }
