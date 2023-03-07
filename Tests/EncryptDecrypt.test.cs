@@ -1,4 +1,4 @@
-﻿namespace my_simple_rsa
+namespace my_simple_rsa
 {
   public class EncryptDecryptTests
   {
@@ -51,7 +51,6 @@
       "...",
       "---",
       "___",
-      "+++",
       "===",
       "^^^",
       "|||",
@@ -84,7 +83,7 @@
     [Fact]
     public void TestEncryptDecrypt()
     {
-      for (int i = 0; i < 100; i++)
+      for (int i = 0; i < 500; i++)
       {
         int prime1 = primes[new Random().Next(primes.Length)];
         int prime2 = primes[new Random().Next(primes.Length)];
